@@ -8,7 +8,6 @@ import createMuiTheme from '@material-ui/core/styles/createMuiTheme'
 import home from'./pages/home.js'
 import login from './pages/login.js'
 import signup from './pages/signup.js'
-
 const theme=createMuiTheme({
   palette:{
     primary:{

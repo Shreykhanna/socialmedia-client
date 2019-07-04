@@ -1,14 +1,15 @@
 import React from 'react'
 import Grid from '@material-ui/core/Grid'
 import axios from 'axios'
+import Scream from '../components/Scream.js'
 export class home extends React.Component{
   state={
     screams:null
   }
   componentDidMount(){
-    axios.get('/screams').then(result=>{
+    axios.get("/screams").then(res=>{
       this.setState({
-        screams:result.data
+        screams:res.data
       })
     }).catch(error=>{
       console.log(error);
@@ -16,7 +17,7 @@ export class home extends React.Component{
   }
   render(){
     let recentScreamsMarkup=this.state.screams ? (
-          this.state.scream.map(scream=><p>{scream.body}</p>)
+          this.state.scream.map(scream=><Scream scream={scream}/>)
     ):<p>Loading...</p>
     return(
       <div>
