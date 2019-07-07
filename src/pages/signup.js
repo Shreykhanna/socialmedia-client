@@ -2,7 +2,7 @@ import React from 'react'
 import TextField from '@material-ui/core/TextField'
 import PropTypes from 'prop-types'
 import withStyles from '@material-ui/core/styles/withStyles'
-
+import axios from 'axios'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
@@ -34,14 +34,26 @@ export class signup extends React.Component{
   handleSubmit=(event)=>{
     event.preventDefault()
     this.setState({
-      loading:false
-    })
-    const newuserData={
+      loading:true
+    });
+    const newUserData={
       email:this.state.email,
       password:this.state.password,
       confirmpassword:this.state.confirmpassword,
       handle:this.state.handle
     }
+    axios.post('/signup',newUserData).then(result=>{
+      console.log(result);
+      this.setState({
+        loading:false
+      })
+      this.props.history.push('/');
+    }).catch(error=>{
+      this.setState({
+        errors:error.response.data,
+        loading:false
+      })
+    })
   }
   handleChange=(event)=>{
     this.setState({
@@ -58,9 +70,9 @@ export class signup extends React.Component{
       <Grid item sm>
       <Typography variant="h4" className={classes.pageTitle}>Signup</Typography>
       <form noValidate onSubmit={this.handleSubmit}>
-      <TextField id="email"           className={classes.textField}      name="email"           label="Email ID"   value={this.state.email} fullWidth />
-      <TextField id="password"         className={classes.textField}      name="password"        label="Password" type="password" value={this.state.password} margin="normal" fullWidth/>
-      <TextField id="confirmpassword" className={classes.textField} name="confirmpassword" label="Confirm Password" value={this.state.confirmpassword} type="password" margin="normal" fullWidth/>
+      <TextField id="email"            className={classes.textField}      name="email"            label="Email ID"   value={this.state.email} fullWidth />
+      <TextField id="password"         className={classes.textField}      name="password"        label="Password"  type="password" value={this.state.password} margin="normal" fullWidth/>
+      <TextField id="confirmpassword"  className={classes.textField}      name="confirmpassword" label="Confirm Password" value={this.state.confirmpassword} type="password" margin="normal" fullWidth/>
       <TextField id="handle" className={classes.textField} name="handle" label="Handle" value={this.state.handle} margin="normal" fullWidth/>
       <Button className={classes.button} type="submit" className={classes.textField} variant="contained" color="primary">SignUp</Button>
       <br/>
