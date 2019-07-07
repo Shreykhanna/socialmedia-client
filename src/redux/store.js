@@ -1,10 +1,8 @@
 import {createStore,combineReducers,applyMiddleware, compose} from 'redux'
 import thunk from 'redux-thunk'
-import userReducer from './redux/reducers/userReducer.js';
-import dataReducer from './redux/reducers/dataReducer.js'
-import uiReducer from './redux/reducers/uiReducer.js'
-
-
+import userReducer from './reducers/userReducer.js'
+import dataReducer from './reducers/dataReducer.js'
+import uiReducer from './reducers/uiReducer.js'
 
 
 const initialState={};

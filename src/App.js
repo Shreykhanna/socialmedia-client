@@ -6,7 +6,7 @@ import Navbar from './components/NavBar.js'
 import AuthRoute from './util/AuthRoute.js'
 //Redux
 import {Provider} from 'react-redux'
-import store from './store.js'
+import store from './redux/store'
 
 
 //MaterialUI
